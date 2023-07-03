@@ -248,7 +248,7 @@ ul.ex-nav.small  li a {
   left: 0;
   width: 100% ;
 }
-ul.ex-nav.nonactive  li a{
+ul.ex-nav.nonactive  {
   display: none;
   top: -100%;
 }
@@ -540,6 +540,7 @@ form.form-add button{
 .brand-filter{
   width: max-content;
   display: flex;
+  justify-content: stretch;
   flex-wrap: wrap;
   gap: 15px;
 }
@@ -559,14 +560,15 @@ form.form-add button{
   display: flex;
   align-items: center;
   text-align: center;
-  min-width: max-content;
+  width: max-content;
   height: 40px;
   
 }
 .list-brand button img{
   position: relative;
-  object-fit: cover ;
-  width: 75px;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 .title {
   display: flex;
@@ -727,7 +729,6 @@ input[type=file]::file-selector-button:hover {
 }
 .file-review {
   border:  dotted 2px;
-  width: fit-content;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -739,7 +740,7 @@ input[type=file]::file-selector-button:hover {
 .file-review:hover{
   background-color: var(--color-opacity);
 }
-.file-review .img-review{
+.file-review img.img-review{
   width: 300px;
   height: 300px;
 }
@@ -801,8 +802,8 @@ input[type=file]::file-selector-button:hover {
 }
 
 
-img {
-  object-fit: cover;
+.slides img {
+  object-fit:contain;
   position: absolute;
   top: 0;
   left: 0;
@@ -840,7 +841,7 @@ img {
   overflow: hidden;
   text-align: left;
   border-radius: 0.5rem;
-  max-width: 50%;
+  min-width: 40%;
   left: 50%;
   display: flex;
   flex-direction: column;
@@ -906,18 +907,28 @@ img {
   text-align: center;
 }
 
-.title {
+span.title {
   color: #066e29;
-  font-size: 1rem;
+  padding: 5px;
+  font-size: 1em;
   font-weight: 600;
   line-height: 1.5rem;
 }
 
 .message {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-top: 0.5rem;
   color: #595b5f;
-  font-size: 0.875rem;
+  font-size: 0.8em;
   line-height: 1.25rem;
+}
+.message span:nth-child(odd){
+  font-weight: bold;
 }
 
 .actions {
@@ -964,3 +975,147 @@ img {
     transform: scale(1.09);
   }
 }
+/* non data */
+.non-data {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  padding: 30px;
+  filter: blur(2px);
+  background-color: var(--color-opacity);
+}
+
+
+.non-data img.img-error{
+  position: relative;
+  object-fit: contain;
+  width: 200px;
+  height: 200px;
+}
+.non-data p {
+  font-size: x-large;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+}
+/* img-table */
+ img.img-table {
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+}
+/* uploaded image */
+.img-review {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+.img-review button{
+  width: max-content;
+}
+#uploadedimage {
+  object-fit: fill;
+  padding: 0;
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+}
+/* color review */
+.color-review{
+  display: inline-block;
+  width: 150px;
+  height: 30px;
+}
+/* error page */
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+.page_404  img{ 
+  height: 100%;
+  width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			
+        text-align: center; 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    margin-top:-50px;}
+    /* role select */
+    select.role-select{
+      height: 40px;
+      padding:0 10px;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    /* switch */
+    input.check-role[type="checkbox"] {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+    
+    label.edit-role-label {
+      cursor: pointer;
+      text-indent: -9999px;
+      width: 60px;
+      height: 40px;
+      background: grey;
+      display: block;
+      border-radius: 100px;
+      position: relative;
+    }
+    
+    label.edit-role-label:after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 30px;
+      height: 30px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    
+    input.check-role:checked + label {
+      background: #bada55;
+    }
+    
+    input.check-role:checked + label:after {
+      left: calc(100% - 5px);
+      transform: translateX(-100%);
+    }
+    
+    label.edit-role-label:active:after {
+      width: 40px;
+    }

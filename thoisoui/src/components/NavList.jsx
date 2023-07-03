@@ -12,12 +12,13 @@ function NavList(props) {
           link.expend === false ? (
             <li key={index}>
               <NavLink
+                title={link.title}
                 to={link.link}
                 className={({ isActive, isPending }) =>
                   isActive ? 'active' : isPending ? 'pending' : ''
                 }>
                 <div className="icon">
-                  <i className={link.icon}></i>
+                  <i title={link.title} className={link.icon}></i>
                 </div>
                 <div className="title-link">{link.title}</div>
               </NavLink>
@@ -27,7 +28,7 @@ function NavList(props) {
               <li>
                 <span>
                   <div className="icon">
-                    <i className={link.icon}></i>
+                    <i title={link.title} className={link.icon}></i>
                   </div>
                   <div className="title-link">{link.title}</div>
 
@@ -55,7 +56,7 @@ function NavList(props) {
                         isActive ? 'active' : isPending ? 'pending' : ''
                       }>
                         {expand ?  <div className="icon">
-                            <i  className={linkEx.icon + 'icon'}></i>
+                            <i title={linkEx.title} className={linkEx.icon + ' icon'}></i>
                           </div> : ''}
                           
                       <div className="title-link">{linkEx.title}</div>

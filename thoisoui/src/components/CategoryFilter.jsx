@@ -1,6 +1,15 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { instance } from '../config/axiosConfig';
 
 function CategoryFilter() {
+  const [data,setData] = useState([])
+
+  useEffect(() => {
+      instance.get('/Category/getAll').then(rs => setData(rs.data))
+      .catch(e => console.log(e))
+  }, [])
   return (
     <>
       <div className="brand-filter">
@@ -9,20 +18,15 @@ function CategoryFilter() {
           <button style={{ fontSize: '1em', padding: '10px' }}>
             All Category
           </button>
-          <button>
-            {' '}
-            <img
-              src="https://media.istockphoto.com/id/1057455004/vi/vec-to/c%E1%BA%A7m-tay-logo-%C4%91i%E1%BB%87n-tho%E1%BA%A1i-%C4%91i%E1%BB%87n-tho%E1%BA%A1i-th%C3%B4ng-minh-c%E1%BA%A7m-tay.jpg?s=612x612&w=0&k=20&c=o3CzeaNDGl0yKDIyrjDLljwRL3K-mhPYBdO9-U-qmZc="
-              alt=''
-            />
-          </button>
-          <button>
-            {' '}
-            <img
-              src="https://t3.ftcdn.net/jpg/02/49/82/50/360_F_249825007_f5dzNTBuUZoV5nERUWTlPDoU3cvLIBzn.jpg"
-alt=''
-            />
-          </button>
+          {data.map((data,index) => 
+             <button>
+             {' '}
+             <img
+               src={data.imageUrl} alt='' 
+             />
+           </button>
+          )
+          }
         </div>
       </div>
     </>

@@ -8,54 +8,35 @@ import { instance } from '../../config/axiosConfig'
 const readOnly = [
   true,
   false,
-  false,
-  false,
-  false,
-  false,
-  true,
-  true,
-  true
 ]
   
 
 const types = [
   'string',
   'string',
-  'number',
-  'string',
-  'number',
-  'string',
-  'number',
-  'date',
-  'date'
+  
 ]
 const initValues = {
   id : '',
-  packageName : '',
-  packageValue : 0,
-  valueUnit: '',
-  coinAmount: 0,
-  description: '',
-  status: 0,
-  createdDate: '',
-  updatedDate: ''
+  name : '',
+ 
 }
 const lable = [
-  "ID","Package name","Package value",'Value unit','Coin amount',"Description", "Status","Create date","Update date"
+  "ID","Name"
 ]
 
 const actions = {
-  getALl: '/CoinPackage/getALl',
-  put : '/CoinPackage/update/',
-  post: '/CoinPackage/add',
+  getALl: '/Roles',
+  put : '/Roles/edit',
+  post: '/Roles/add',
   delete: '/CoinPackage/delete/'
 }
-function CoinPackage() {
+function Role() {
   const [data,setData] = useState([])
   const [value,setValue] = useState([])
   const [reload,setReload] = useState(false)
-  const [id,packageName,packageValue,valueUnit,coinAmount,description] = value
-  const  valueAction = {id,packageName,packageValue,valueUnit,coinAmount,description}
+  const [id,roleName] = value
+  const  valueAction = {id,roleName}
   useEffect(()=> { 
     
     instance.get(actions.getALl)
@@ -63,18 +44,12 @@ function CoinPackage() {
 
       let temp = new Array()
 
-      rs.data.map(({id,packageName,packageValue,valueUnit,coinAmount,description,status,createdDate,updatedDate}) => {
+      rs.data.map(({id,name}) => {
         
         temp.push({
           id,
-          packageName,
-          packageValue,
-          valueUnit,
-          coinAmount,
-          description,
-          status,
-          createdDate,
-          updatedDate
+          name,
+       
         })
       
       })
@@ -91,4 +66,4 @@ return (
 )
 }
 
-export default CoinPackage
+export default Role

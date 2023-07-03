@@ -1,45 +1,76 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import BussinessService from '../../components/Service/BussinessService'
 import TableSearch from '../../components/TableSearch'
-const data = [
-  {
-      id: 1213,
-      name: 'Size 1',
-      direction: '120 x 120',
-      dateCreate: '21-2-2023',
-      dateUpdate: '21-2-2023'
-  },
-  {
-      id: 1214,
-      name: 'Size 1',
-      direction: '120 x 120',
-      dateCreate: '2018-07-22',
-      dateUpdate: '2018-07-22'
-  }
-  ]
-  const readOnly = [
-    true,false,false,true,true
-  ]
-  const initValues = {
-    key: 0,
-    name: '',
-    direction: '',
-    createAt:new Date(),
-    updateAt:new Date()
-  }
-  const types = [
-    "number",
-    "string",
-    "string",
-    "date",
-    "date"
 
-  ]
+const readOnly = [
+  true,
+  false,
+  false,
+  true,
+  true
+]
+  
+
+const types = [
+  'number',
+  'string',
+  'string',
+  'date',
+  'date'
+]
+const initValues = {
+  id: 0,
+  sizeName: '',
+  description: '',
+  createdDate: '',
+  updatedDate: ''
+}
+
+const actions = {
+  put : '/Size/update/',
+  post: '/Size/add',
+  delete: '/Size/delete/'
+}
+
 function Size() {
+
+    const [data,setData] = useState([])
+    const [value,setValue] = useState([])
+    const [reload,setReload] = useState(false)
+    const [id,sizeName,description,createdDate,updatedDtae] = value
+    const  valueAction = {id,sizeName,description,createdDate,updatedDtae}
+    useEffect(()=> { 
+      
+      BussinessService.getAllSize()
+      .then( rs => {
+
+        let temp = new Array()
+
+        rs.data.map(({id,sizeName,description,createdDate,updatedDate}) => {
+          
+          temp.push({
+            id,
+            sizeName,
+            description,
+            createdDate,
+            updatedDate
+          })
+        
+        })
+        setData(temp)
+      })
+      .catch(e => console.log(e))
+
+    },[reload])
+    const setReloaded = () => setReload(!reload)
     const lable = [
-        "key","Name","Direction","DateCrate","DateUpdate"
+        "ID","Size name","Description","Creat date","Update date"
     ]
+
   return (
-   <TableSearch lable={lable} data={data} readOnly= {readOnly} types={types} initValues={initValues}/>
+   <TableSearch lable={lable}  data={data} value={value} reload={reload} setReloaded={setReloaded} initValues={initValues} setValue={setValue} valueAction={valueAction}  actions = {actions} readOnly= {readOnly} types={types} />
   )
 }
 

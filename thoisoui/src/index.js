@@ -15,29 +15,68 @@ import Size from './page/adminPage/Size';
 import CoinPackage from './page/adminPage/CoinPackage';
 import Approve from './page/adminPage/Approve';
 import PostStatistic from './page/adminPage/PostStatistic';
+import Category from './page/adminPage/Category';
+import Brand from './page/adminPage/Brand';
+import ReportCategory from './page/adminPage/ReportCategory';
+import Color from './page/adminPage/Color';
+import Role from './page/adminPage/Role';
+import User from './page/adminPage/Users';
+import AssignRole from './page/adminPage/AssignRole';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<LayoutAdmin />} errorElement={<ErrorPage />}>
       <Route
         path="/admin/dashboard"
-        element={<DashBoard />}
+        element={<PostStatistic />}
         errorElement={<ErrorPage />}></Route>
       <Route
         path="/admin/business/size"
         element={<Size />}
         errorElement={<ErrorPage />}></Route>
-           <Route
+      <Route
+        path="/admin/business/category"
+        element={<Category />}
+        errorElement={<ErrorPage />}></Route>
+      <Route
         path="/admin/business/coin-package"
         element={<CoinPackage />}
         errorElement={<ErrorPage />}></Route>
-          <Route
+         <Route
+        path="/admin/business/brand"
+        element={<Brand />}
+        errorElement={<ErrorPage />}></Route>
+        <Route
+        path="/admin/business/report-category"
+        element={<ReportCategory />}
+        errorElement={<ErrorPage />}></Route>
+        <Route
+        path="/admin/business/color"
+        element={<Color />}
+        errorElement={<ErrorPage />}></Route>
+      <Route
         path="/admin/approve"
         element={<Approve />}
         errorElement={<ErrorPage />}></Route>
- <Route
+        <Route
+        path="/admin/users"
+        element={<User />}
+        errorElement={<ErrorPage />}></Route>
+      <Route
         path="/admin/statistic/post"
         element={<PostStatistic />}
+        errorElement={<ErrorPage />}></Route>
+           <Route
+        path="/admin/role"
+        element={<Role />}
+        errorElement={<ErrorPage />}></Route>
+         <Route
+        path="/admin/assign-role"
+        element={<AssignRole />}
+        errorElement={<ErrorPage />}></Route>
+           <Route
+        path="/admin/role"
+        element={<Role />}
         errorElement={<ErrorPage />}></Route>
     </Route>
   )

@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 const initUrl = '';
 
-function FileReview() {
+function FileReview(props) {
+  const {onChange,value, } = props
   const [url, setUrl] = useState(initUrl);
 
   const showReview = (e) => {
@@ -11,7 +12,8 @@ function FileReview() {
       let imageFile = e.target.files[0];
       const reader = new FileReader();
       reader.onload = (x) => {
-        setUrl(x.target.result);
+        onChange(e)
+        setUrl(x.target.result)
       };
       reader.readAsDataURL(imageFile);
     } else {
@@ -20,7 +22,7 @@ function FileReview() {
   };
   return (
     <>
-      <label className="file-review">
+      <div className="file-review">
         <input
           type={'file'}
           accept="image/*,video/*"
@@ -28,7 +30,7 @@ function FileReview() {
           id="field-upload"
         />
         <img src={url} alt="" className="img-review" />
-      </label>
+      </div>
     </>
   );
 }
