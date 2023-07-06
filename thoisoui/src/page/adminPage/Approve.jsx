@@ -45,7 +45,8 @@ const actions = {
   getALl: '/Product/AdminGetAll',
   getRole: "/Roles/getRoleByUser",
   getById: "/Product/AdminGetById/",
-  getProfile: '/user/profile'
+  getProfile: '/user/profile',
+  delete:'Product/delete/'
 }
 
 function Approve() {
@@ -63,21 +64,21 @@ function Approve() {
   
         let temp = new Array()
         
-        rs.data.map(({id,name,description,price,stock,createdDate,categoryId,brandId,isHidden}) => {
+        rs.data.map(({id,name,description,price,stock,createdDate,categoryId,brandId,isHidden,status}) => {
   
   
-          
+          if (status == 2){
            temp.push({
             name,
             description,
             price,
             stock,
-            isHidden: !isHidden,
+            isHidden: status == 2 ? false : true,
             createdDate,
             more: id,
             categoryId,
             brandId,
-          })
+          })}
         })
         setData(temp)
       })

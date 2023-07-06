@@ -32,8 +32,8 @@ const handleAprrove = () =>{
     if (rs.data.isSuccess)
     {
         toast.success(rs.data.message)
-        setReload()
         setInfo()
+        setReload()
     }
     else{
         toast.error(rs.data.errors)
@@ -42,7 +42,19 @@ const handleAprrove = () =>{
   .catch( e => console.log(e))
 }
 const handleDeny = () => {
-      setInfo()
+  instance.delete(`/Product/delete/${id}`)
+  .then ( rs => {
+    if (rs.data.isSuccess)
+    {
+        toast.success(rs.data.message)
+        setInfo()
+        setReload()
+    }
+    else{
+        toast.error(rs.data.message)
+    }
+  })
+  .catch( e => console.log(e))
 }
   return (
     <>

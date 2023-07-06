@@ -28,7 +28,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<LayoutAdmin />} errorElement={<ErrorPage />}>
       <Route
         path="/admin/dashboard"
-        element={<PostStatistic />}
+        element={<DashBoard />}
         errorElement={<ErrorPage />}></Route>
       <Route
         path="/admin/business/size"
