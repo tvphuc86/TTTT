@@ -40,6 +40,11 @@ const linkAdmin = [
         icon: 'fas fa-tint',
         title: 'Color',
       },
+      {
+        link: '/admin/business/subscription-package',
+        icon: 'fas fa-package',
+        title: 'Subcription package',
+      },
     ],
    
   },
@@ -63,13 +68,13 @@ const linkAdmin = [
         icon: 'fas fa-pencil-alt',
         title: 'Assign role',
       },
-      
+     
     ],
   },
   {
     link: '/admin/approve',
     icon: 'fas fa-check',
-    title: 'Approve',
+    title: 'Approve post',
     expend: false,
   },
   {

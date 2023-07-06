@@ -77,7 +77,7 @@ function TableStatistic(props) {
                     index === Object.values(data).length - 1 ? (
                       <td>
                         {' '}
-                        <i className="fas fa-info"></i>
+                        <a href={element} title="Go to detail"><i className="fas fa-info"></i></a>
                       </td>
                     ) : (
                       <td>{element}</td>

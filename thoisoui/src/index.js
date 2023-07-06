@@ -23,6 +23,8 @@ import Role from './page/adminPage/Role';
 import User from './page/adminPage/Users';
 import AssignRole from './page/adminPage/AssignRole';
 import CheckReport from './page/adminPage/CheckReport';
+import SubcriptionPackage from './page/adminPage/SubcriptionPackage';
+import ReportStatistic from './page/adminPage/ReportStatistic';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -55,6 +57,10 @@ const router = createBrowserRouter(
         path="/admin/business/report-category"
         element={<ReportCategory />}
         errorElement={<ErrorPage />}></Route>
+         <Route
+        path="/admin/business/subscription-package"
+        element={<SubcriptionPackage />}
+        errorElement={<ErrorPage />}></Route>
         <Route
         path="/admin/business/color"
         element={<Color />}
@@ -70,6 +76,10 @@ const router = createBrowserRouter(
       <Route
         path="/admin/statistic/post"
         element={<PostStatistic />}
+        errorElement={<ErrorPage />}></Route>
+         <Route
+        path="/admin/statistic/report"
+        element={<ReportStatistic />}
         errorElement={<ErrorPage />}></Route>
            <Route
         path="/admin/role"

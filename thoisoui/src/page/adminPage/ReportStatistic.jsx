@@ -37,7 +37,7 @@ const data = [{
 const lable = ["ID",'Name','Description',"User ID", 'More']
 const actionsUrl = {
   getPost: '/Statistics/getPostsByCategoryInMonth',
-  getUser: 'Statistics/monthly-registers?year=',
+  getUser: '/Statistics/monthly-reports?year=',
   getReport: '/Statistics/monthly-reports?year=',
   getPostByUser: '/Statistics/getPostsByUserIn',
 
@@ -48,7 +48,7 @@ const monthNames = ["","January", "February", "March", "April", "May", "June",
 ];
 
 let innitMonthData = [0,0,0,0,0,0,0,0,0,0,0,0]
-function DashBoard() {
+function ReportStatistic() {
     const [dataChar1,setDataChart1] = useState([])
     const [dataTbale,setDataTable] = useState([])
     const [timeSelect,setTimeSelect] = useState(3)
@@ -56,7 +56,7 @@ function DashBoard() {
         instance.get(`${actionsUrl.getUser}${new Date().getFullYear()}`)
         .then( rs => {
          rs.data.map(v =>{
-          innitMonthData[v.month] = v.numberOfNewUser
+          innitMonthData[v.month] = v.numberOfNewReport
          })
           let data = new Array()
           for (let index = 1; index <= 12; index++) {
@@ -98,10 +98,9 @@ function DashBoard() {
     const setTime1 = (id) => setTimeSelect(id)
   return (
     <>
-    <DashBoardCard actionsUrl = {actionsUrl} />
    <div className='chart-side'>
     <div className='chart-side-1'>
-    <BarChartCustom nameChart='New Register' data ={dataChar1} />
+    <BarChartCustom nameChart='Frequency report in month' data ={dataChar1} />
     </div>
     <div className='chart-side-2'>
     </div>
@@ -112,4 +111,4 @@ function DashBoard() {
   )
 }
 
-export default DashBoard
+export default ReportStatistic
