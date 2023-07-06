@@ -22,6 +22,7 @@ import Color from './page/adminPage/Color';
 import Role from './page/adminPage/Role';
 import User from './page/adminPage/Users';
 import AssignRole from './page/adminPage/AssignRole';
+import CheckReport from './page/adminPage/CheckReport';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,10 @@ const router = createBrowserRouter(
       <Route
         path="/admin/dashboard"
         element={<DashBoard />}
+        errorElement={<ErrorPage />}></Route>
+         <Route
+        path="/admin/check-report"
+        element={<CheckReport />}
         errorElement={<ErrorPage />}></Route>
       <Route
         path="/admin/business/size"

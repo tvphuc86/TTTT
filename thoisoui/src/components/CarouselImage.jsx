@@ -4,13 +4,17 @@ import { useState } from 'react'
 import { instance } from '../config/axiosConfig'
 
 function CarouselImage(props) {
-  const {idInfo} = props
+  const {idInfo,report} = props
 
 const [data,setData] = useState([])
 
 useEffect(()=>{
+  report !== true ?
     instance.get(`/Product/AdminGetById/${idInfo}`)
     .then( rs => setData(rs.data.product.images))
+    :
+    instance.get(`/Report/getById/${idInfo}`)
+    .then( rs => setData(rs.data.evidences))
 },[])
 
   return (
@@ -30,7 +34,7 @@ useEffect(()=>{
     {
       data.map((v,i) => 
         <div key={v.id} id={"slide-"+ Number(i+1)}>
-        <img src={v.url} alt=''/>
+        <img src={report !== true ? v.url : v.imageUrl} alt=''/>
     </div>
         )
     }

@@ -6,7 +6,7 @@ import { instance } from '../config/axiosConfig';
 
 
 function CardApprove(props) {
-  const {setInfo,children,idInfo, setReload} = props
+  const {setInfo,userId,children,idInfo,report,productId, setReload} = props
   const [id,setId] = useState(idInfo)
   const [product,setProduct] = useState({})
   const [brand,setBrand] = useState("")
@@ -27,6 +27,8 @@ function CardApprove(props) {
     })
 },[])
 const handleAprrove = () =>{
+
+  if (report !==true ){
   instance.post(`/Product/ApproveProduct/${id}`)
   .then ( rs => {
     if (rs.data.isSuccess)
@@ -39,9 +41,25 @@ const handleAprrove = () =>{
         toast.error(rs.data.errors)
     }
   })
-  .catch( e => console.log(e))
-}
+  .catch( e => console.log(e))}
+  else{
+    console.log(userId);
+    instance.post(`/User/ban?userId=${userId}`)
+    .then(rs => { if (rs.data.isSuccess)
+      {
+          toast.success(rs.data.message)
+          setInfo()
+          setReload()
+      }
+      else{
+          toast.error(rs.data.errors)
+      }
+    })
+    .catch( e => console.log(e))}
+  }
+
 const handleDeny = () => {
+  if (report !== true){
   instance.delete(`/Product/delete/${id}`)
   .then ( rs => {
     if (rs.data.isSuccess)
@@ -54,8 +72,23 @@ const handleDeny = () => {
         toast.error(rs.data.message)
     }
   })
-  .catch( e => console.log(e))
-}
+  .catch( e => console.log(e))}
+  else{
+    instance.get(`/PostAndPackage/hideProduct/${productId}`)
+    .then ( rs => {
+      if (rs.data.isSuccess)
+      {
+          toast.success(rs.data.message)
+          setInfo()
+          setReload()
+      }
+      else{
+          toast.error(rs.data.message)
+      }
+    })
+    .catch( e => console.log(e))}
+  }
+
   return (
     <>
       <ToastContainer
@@ -96,8 +129,10 @@ const handleDeny = () => {
               </g>
             </svg>
           </div> */}
-          <div class="card-content">
+         <div class="card-content">
             {children}
+            {report !== true &&
+            <div>
             <span class="title">{product.name}</span>
             <p class="message">
             <span>User :</span> <span>{user.username}</span>
@@ -109,14 +144,14 @@ const handleDeny = () => {
               <span>Color :</span> <span style={{display:'inline-block',backgroundColor:color,width:'20px',height: '20px',borderRadius:'50%'}}></span>
 
               
-            </p>
+            </p></div>}
           </div>
           <div class="actions">
             <button type="button" onClick={()=>handleAprrove()} class="approve">
-              Approve
+              { report ? "Ban user" :"Approve"}
             </button>
             <button type="button" onClick={()=> handleDeny()} class="deny">
-              Deny
+              {report? "Hide product" :"Deny"}
             </button>
           </div>
         </div>

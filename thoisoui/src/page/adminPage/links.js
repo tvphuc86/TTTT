@@ -72,6 +72,12 @@ const linkAdmin = [
     title: 'Approve',
     expend: false,
   },
+  {
+    link: '/admin/check-report',
+    icon: 'fas fa-tools',
+    title: 'Check report',
+    expend: false,
+  },
  
   {
     link: '/admin/statistic',
