@@ -42,7 +42,7 @@ const linkAdmin = [
       },
       {
         link: '/admin/business/subscription-package',
-        icon: 'fas fa-package',
+        icon: 'fas fa-gift',
         title: 'Subcription package',
       },
     ],
