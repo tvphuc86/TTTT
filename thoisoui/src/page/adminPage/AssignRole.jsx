@@ -24,7 +24,7 @@ const initValues = {
   email: '',
   
 }
-const lable = [
+let lable = [
   "User id","Username"
 ]
 
@@ -46,6 +46,9 @@ function AssignRole() {
     if (addRole){
       instance.get(`${actions.getUserByRole}${roleId}`)
       .then( rs => {
+        lable = [
+          "User id","Username"
+        ]
         let temp = new Array()
         
         rs.data.map(({userId,userName,isSelected}) => {
@@ -66,22 +69,29 @@ function AssignRole() {
     else{
       instance.get(`${actions.getByID}${roleId}`)
       .then( rs => {
+        console.log(rs.data);
         let temp = new Array()
         
-        rs.data.map(({users}) => {
+        lable = [
+          "Username"
+        ]
+          if (rs.data.users.length !== 0){
+            let temps = rs.data.users
+          temps.map((v)=>{
           
-          let {userId,userName,isSelected} = users
-  
-          if(!isSelected){ 
           
            temp.push({
-            userId,
-            userName,
-          })} 
+            
+            v,
+          })})
+          setData(temp)
+        }
+        else{
+          setData([])
+        }
         })
-        setData(temp)
-      }
-        )
+      
+        
         .catch( e => console.log(e))
     }
 
